@@ -1,4 +1,4 @@
-name: Run NPM Build
+name: Run NPM Build and Commit Changes
 
 on:
   repository_dispatch:
@@ -10,18 +10,20 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Использование вашего Personal Access Token для доступа к репозиторию
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '21.5.0'  # Используйте нужную вам версию Node.js
+          node-version: '21.5.0'  # Установка нужной версии Node.js
 
       - name: Install Dependencies
         run: npm install
 
       - name: Create Date File
         run: echo "// Placeholder for TypeScript code" > test$(date +%Y%m%d).ts
-        # Эта команда создаёт файл в формате testYYYYMMDD.ts и пишет в него строку-заполнитель
+        # Создание файла с датой в имени
 
       - name: Commit and Push Date File
         run: |
@@ -29,5 +31,7 @@ jobs:
           git config --global user.name "GitHub Action"
           git add test$(date +%Y%m%d).ts
           git commit -m "Add new date file test$(date +%Y%m%d).ts"
-          git push
-        # Добавляет изменения в репозиторий, если это необходимо
+          git push origin HEAD:main
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        # Установка переменной окружения GITHUB_TOKEN для использования в командах Git
