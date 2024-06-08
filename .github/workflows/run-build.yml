@@ -27,8 +27,8 @@ jobs:
 
       - name: Commit and Push Date File
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
+          git config --global user.email "noreply@github.com"
+          git config --global user.name "Automated Builder"
           git add test$(date +%Y%m%d).ts
           git commit -m "Add new date file test$(date +%Y%m%d).ts"
           git push origin HEAD:main
