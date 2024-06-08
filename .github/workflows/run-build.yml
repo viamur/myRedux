@@ -23,9 +23,6 @@ jobs:
         run: echo "// Placeholder for TypeScript code" > test$(date +%Y%m%d).ts
         # Эта команда создаёт файл в формате testYYYYMMDD.ts и пишет в него строку-заполнитель
 
-      - name: Run Build
-        run: npm run build
-
       - name: Commit and Push Date File
         run: |
           git config --global user.email "action@github.com"
