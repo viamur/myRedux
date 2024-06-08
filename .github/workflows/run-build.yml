@@ -2,7 +2,7 @@ name: Run NPM Build and Commit Changes
 
 on:
   repository_dispatch:
-    types: [trigger-build]
+    types: [trigger]
 
 jobs:
   build:
@@ -31,7 +31,7 @@ jobs:
           git config --global user.name "Automated Builder"
           git add test$(date +%Y%m%d).ts
           git commit -m "Add new date file test$(date +%Y%m%d).ts"
-          git push origin HEAD:main
+          git push origin HEAD:origin/main
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         # Установка переменной окружения GITHUB_TOKEN для использования в командах Git
