@@ -13,13 +13,13 @@ jobs:
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Использование вашего Personal Access Token для доступа к репозиторию
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '21.5.0'  # Установка нужной версии Node.js
+      # - name: Set up Node.js
+        # uses: actions/setup-node@v3
+        # with:
+          # node-version: '21.5.0'  # Установка нужной версии Node.js
 
-      - name: Install Dependencies
-        run: npm install
+      # - name: Install Dependencies
+        # run: npm install
 
       - name: Create Date File
         run: echo "// Placeholder for TypeScript code" > test$(date +%Y%m%d).ts
