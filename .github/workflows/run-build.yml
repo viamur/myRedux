@@ -22,7 +22,7 @@ jobs:
         # run: npm install
 
       - name: Create Date File
-        run: echo "// Placeholder for TypeScript code" > test$(date +%Y%m%d).ts
+        run: echo "// Placeholder for TypeScript code" > test$(date +%Y%m%d%H%M%S).ts
         # Создание файла с датой в имени
 
       - name: Commit and Push Date File
@@ -31,7 +31,7 @@ jobs:
           git config --global user.name "Automated Builder"
           git add test$(date +%Y%m%d).ts
           git commit -m "Add new date file test$(date +%Y%m%d).ts"
-          git push origin HEAD:origin/main
+          git push origin HEAD:main
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         # Установка переменной окружения GITHUB_TOKEN для использования в командах Git
