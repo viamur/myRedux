@@ -19,5 +19,18 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Create Date File
+        run: echo "// Placeholder for TypeScript code" > test$(date +%Y%m%d).ts
+        # Эта команда создаёт файл в формате testYYYYMMDD.ts и пишет в него строку-заполнитель
+
       - name: Run Build
         run: npm run build
+
+      - name: Commit and Push Date File
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add test$(date +%Y%m%d).ts
+          git commit -m "Add new date file test$(date +%Y%m%d).ts"
+          git push
+        # Добавляет изменения в репозиторий, если это необходимо
